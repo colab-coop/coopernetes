@@ -1,0 +1,13 @@
+repositories:
+- name: stable
+  url: https://kubernetes-charts.storage.googleapis.com
+- name: incubator
+  url: https://kubernetes-charts-incubator.storage.googleapis.com
+
+releases:
+  - name: metrics-server
+    namespace: kube-system
+    chart: stable/metrics-server
+  - name: dashboard
+    namespace: kube-system
+    chart: stable/dashboard
