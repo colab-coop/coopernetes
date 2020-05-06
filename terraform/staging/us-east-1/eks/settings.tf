@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket  = "coopernetes-operations"
-    key     = "terraform/state/colab/staging/us_east_1.tfstate"
+    key     = "terraform/staging/us-east-1/eks.tfstate"
     region  = "us-east-1"
     profile = "coopernetes"
   }
