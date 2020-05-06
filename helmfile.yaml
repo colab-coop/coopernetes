@@ -8,6 +8,6 @@ releases:
   - name: metrics-server
     namespace: kube-system
     chart: stable/metrics-server
-  - name: dashboard
+  - name: kubernetes-dashboard
     namespace: kube-system
-    chart: stable/dashboard
+    chart: stable/kubernetes-dashboard
