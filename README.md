@@ -27,3 +27,7 @@ Forked from the steps at https://learn.hashicorp.com/terraform/kubernetes/provis
 1. Build the image, tag it with the repo name and the commit hash, and push it to the new ecr registry
 1. Create a database, if needed
 1. Write a chart for the app, in it's own git repo
+
+## Relevant documents / blog posts for intallation:
+1. https://cert-manager.io/docs/tutorials/acme/ingress/
+1. https://cert-manager.io/docs/installation/kubernetes/

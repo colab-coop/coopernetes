@@ -3,6 +3,10 @@ repositories:
   url: https://kubernetes-charts.storage.googleapis.com
 - name: incubator
   url: https://kubernetes-charts-incubator.storage.googleapis.com
+- name: ingress-nginx
+  url: https://kubernetes.github.io/ingress-nginx
+- name: jetstack
+  url: https://charts.jetstack.io
 
 releases:
   - name: metrics-server
@@ -11,3 +15,25 @@ releases:
   - name: kubernetes-dashboard
     namespace: kube-system
     chart: stable/kubernetes-dashboard
+  # NOTE: there are two nginx ingress charts, one maintained my nginx and one maintained by the kubernetes community.
+  # we use the community one (ingress-nginx) rather than the nginx one (nginx-ingress). When reading tutorials make
+  # sure to pay attention to which ingress they are referring to. It's availible at https://github.com/kubernetes/ingress-nginx
+  - name: ingress-nginx
+    namespace: kube-system
+    chart: ingress-nginx/ingress-nginx
+    version: 2.1.0
+    set:
+      - name: rbac.create
+        value: true
+    values:
+      - controller:
+          service:
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: 0.15.0
+    set:
+      - name: installCRDs
+        value: true
