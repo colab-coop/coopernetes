@@ -37,3 +37,6 @@ releases:
     set:
       - name: installCRDs
         value: true
+  - name: cluster-issuers
+    namespace: cert-manager
+    chart: ./charts/cluster-issuers/

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: cluster-issuers
+description: letsencrypt-staging and letsencrypt-prod cluster issuers for cert-manager
+type: application
+version: 0.1.0
+appVersion: 1.16.0
