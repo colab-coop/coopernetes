@@ -1,0 +1,3 @@
+# issuer: letsencrypt-staging
+issuer: letsencrypt-prod
+host: kuard.coopernetes.colab.coop

@@ -40,3 +40,6 @@ releases:
   - name: cluster-issuers
     namespace: cert-manager
     chart: ./charts/cluster-issuers/
+  - name: kuard
+    namespace: kuard
+    chart: ./charts/kuard/

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: kuard
+description: A simple demo application to test the cluster is running and ssl certs are being issued
+type: application
+version: 0.1.0
+appVersion: 1.16.0
