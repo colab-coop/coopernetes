@@ -45,3 +45,8 @@ releases:
   - name: kuard
     namespace: kuard
     chart: ./charts/kuard/
+  - name: wordpress
+    namespace: wordpress
+    chart: bitnami/wordpress
+    values:
+      - ./values/wordpress.yaml
