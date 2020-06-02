@@ -1,0 +1,13 @@
+apiVersion: service-operator.aws/v1alpha1
+kind: SQSQueue
+metadata:
+  name: example-sqs-queue-name
+spec:
+  contentBasedDeduplication: true
+  delaySeconds: 5
+  usedeadletterQueue: false
+  maximumMessageSize: 262144
+  messageRetentionPeriod: 345600
+  visibilityTimeout: 30
+
+
