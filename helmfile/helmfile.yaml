@@ -50,3 +50,6 @@ releases:
     chart: bitnami/wordpress
     values:
       - ./values/wordpress.yaml
+  - name: aws-service-operator
+    namespace: kube-system
+    chart: ./charts/aws-service-operator/charts/aws-service-operator/
