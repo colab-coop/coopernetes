@@ -11,6 +11,7 @@ To manage and deploy applications on kubernetes:
 - `helm`
 - `helmfile`
 - the helm-diff plugin: `helm plugin install https://github.com/databus23/helm-diff`
+- the helm-secrets plugin: `helm plugin install https://github.com/futuresimple/helm-secrets`
 - https://github.com/awslabs/amazon-ecr-credential-helper
 
 ## Creating a cluster
