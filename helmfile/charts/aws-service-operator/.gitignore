@@ -1,0 +1,7 @@
+/aws-service-operator
+pod-role.json
+.DS_Store
+/aws-service-operator.yaml
+kubeconfig
+dist/
+.envrc
