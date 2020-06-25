@@ -12,7 +12,6 @@ To manage and deploy applications on kubernetes:
 - `helmfile`
 - the helm-diff plugin: `helm plugin install https://github.com/databus23/helm-diff`
 - the helm-secrets plugin: `helm plugin install https://github.com/futuresimple/helm-secrets`
-- https://github.com/awslabs/amazon-ecr-credential-helper
 
 ## Creating a cluster
 Forked from the steps at https://learn.hashicorp.com/terraform/kubernetes/provision-eks-cluster
@@ -28,6 +27,16 @@ Forked from the steps at https://learn.hashicorp.com/terraform/kubernetes/provis
 1. Build the image, tag it with the repo name and the commit hash, and push it to the new ecr registry
 1. Create a database, if needed
 1. Write a chart for the app, in it's own git repo
+
+## Setting up CD for a new project:
+All deployment related files, including the chart, helmfile, and Dockfile, should all live in a folder called `.deploy` in the root of the repository.
+
+To deploy, simply launch the `coopernetes-deploy` container in CircleCI, and then call the `deploy.sh` script. This script does two things:
+1. Builds a docker image using the Dockerfile at `.deploy/Dockerfile` and the project root as the context.
+2. Calls `helfile apply .deploy/helmfile.yaml`.
+
+If you are using a custom chart for the project, we recommend putting it at `.deploy/chart/`.
+
 
 ## Relevant documents / blog posts for intallation:
 1. https://cert-manager.io/docs/tutorials/acme/ingress/
