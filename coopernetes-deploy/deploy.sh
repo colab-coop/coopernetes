@@ -1,15 +1,13 @@
 #!/bin/bash
 
-PROJECT_PATH=$(git rev-parse --show-toplevel)
 if test -z "$DOCKERFILE"; then
-  DOCKERFILE="$PROJECT_PATH/.deploy/Dockerfile"
+  DOCKERFILE="$CIRCLE_WORKING_DIRECTORY/.deploy/Dockerfile"
 fi
 if test -z "$HELMFILE"; then
-  HELMFILE="$PROJECT_PATH/.deploy/helmfile.yaml"
+  HELMFILE="$CIRCLE_WORKING_DIRECTORY/.deploy/helmfile.yaml"
 fi
 
-PROJECT_NAME=$(basename `git rev-parse --show-toplevel`)
-DOCKER_REPO=colabcoop/$PROJECT_NAME
+DOCKER_REPO=colabcoop/$CIRCLE_PROJECT_REPONAME
 GIT_TAG=$(git rev-parse --short HEAD)
 export DOCKER_TAG=$DOCKER_REPO:$GIT_TAG
 
@@ -38,7 +36,7 @@ fi
 
 echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin
 echo Tagging docker image with $DOCKER_TAG
-docker build --tag $DOCKER_TAG $PROJECT_PATH -f $DOCKERFILE
+docker build --tag $DOCKER_TAG $CIRCLE_WORKING_DIRECTORY -f $DOCKERFILE
 docker push $DOCKER_TAG
 
 # Deploy to kubernetes
