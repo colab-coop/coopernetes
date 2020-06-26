@@ -11,7 +11,7 @@ fi
 PROJECT_NAME=$(basename `git rev-parse --show-toplevel`)
 DOCKER_REPO=colabcoop/$PROJECT_NAME
 GIT_TAG=$(git rev-parse --short HEAD)
-DOCKER_TAG=$DOCKER_REPO:$GIT_TAG
+export DOCKER_TAG=$DOCKER_REPO:$GIT_TAG
 
 if test -z "$DOCKER_USER" ||
   test -z "$DOCKER_PASSWORD" ||
