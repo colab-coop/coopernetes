@@ -37,6 +37,7 @@ if [ ! -f "$DOCKERFILE" ]; then
 fi
 
 echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin
+echo Tagging docker image with $DOCKER_TAG
 docker build --tag $DOCKER_TAG $PROJECT_PATH -f $DOCKERFILE
 docker push $DOCKER_TAG
 
@@ -46,4 +47,4 @@ if [ ! -f "$HELMFILE" ]; then
     exit 1
 fi
 aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
-helmfile apply -f $HELMFILE
+helmfile --file $HELMFILE apply
