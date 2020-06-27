@@ -1,9 +1,29 @@
+locals {
+  map_users = [
+    {
+      userarn  = aws_iam_user.coopernetes-deploy-user.arn
+      username = "coopernetes-deploy-user"
+      groups   = ["system:masters"]
+    },
+  ]
+  map_roles = [
+    {
+      rolearn  = "arn:aws:iam::395720434993:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccess_729dbe7623fb0433"
+      username = "devops"
+      groups   = ["system:masters"]
+    },
+  ]
+}
+
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = local.cluster_name
   cluster_version = "1.15"
   subnets         = module.vpc.private_subnets
+
   manage_aws_auth = true
+  map_roles       = local.map_roles
+  map_users       = local.map_users
 
   tags = {
     Environment = var.env
