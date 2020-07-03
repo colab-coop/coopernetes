@@ -7,8 +7,10 @@ fi
 if test -z "$DOCKER_CONTEXT"; then
   DOCKER_CONTEXT="$PROJECT_PATH/"
 fi
+if test -z "$DOCKER_REPO"; then
+  DOCKER_REPO=colabcoop/$CIRCLE_PROJECT_REPONAME
+fi
 
-DOCKER_REPO=colabcoop/$CIRCLE_PROJECT_REPONAME
 GIT_TAG=$(git rev-parse --short HEAD)
 export DOCKER_TAG=$DOCKER_REPO:$GIT_TAG
 
