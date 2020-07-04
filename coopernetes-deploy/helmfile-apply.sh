@@ -19,7 +19,7 @@ if test -z "$AWS_ACCESS_KEY_ID" ||
 fi
 
 # Deploy to kubernetes
-if [ ! -f "$HELMFILE" ]; then
+if test ! -f "$HELMFILE"; then
     >&2 echo "The deploy script expected a helmfile at $HELMFILE, but found nothing."
     exit 1
 fi
