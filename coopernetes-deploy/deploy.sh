@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./build-docker.sh
-./deploy.sh
+/docker-build.sh
+/helmfile-apply.sh
