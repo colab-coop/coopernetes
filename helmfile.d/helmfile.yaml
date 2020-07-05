@@ -13,12 +13,6 @@ repositories:
   url: https://kubecost.github.io/cost-analyzer/
 
 releases:
-  - name: metrics-server
-    namespace: kube-system
-    chart: stable/metrics-server
-  - name: kubernetes-dashboard
-    namespace: kube-system
-    chart: stable/kubernetes-dashboard
   # NOTE: there are two nginx ingress charts, one maintained my nginx and one maintained by the kubernetes community.
   # we use the community one (ingress-nginx) rather than the nginx one (nginx-ingress). When reading tutorials make
   # sure to pay attention to which ingress they are referring to. It's availible at https://github.com/kubernetes/ingress-nginx
@@ -44,14 +38,6 @@ releases:
   - name: cluster-issuers
     namespace: cert-manager
     chart: ./charts/cluster-issuers/
-  - name: kuard
-    namespace: kuard
-    chart: ./charts/kuard/
-  - name: wordpress
-    namespace: wordpress
-    chart: bitnami/wordpress
-    values:
-      - ./values/wordpress.yaml
   - name: kubecost
     namespace: kubecost
     chart: kubecost/cost-analyzer
