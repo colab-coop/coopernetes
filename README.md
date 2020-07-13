@@ -1,4 +1,4 @@
-This is the set of terraform and helm comfigurations for Colab's brand new kubernetes cluster.
+This is the set of terraform, helm, and docker configurations required to manage, operate, and deploy to a no-nonsense version of Kubernetes we call Coopernetes. This project is still in very early alpha developement, and is currently only being used by Colab Coop (https://colab.coop) and itme (https://itme.company). If you are interested in hosting containers and applicaitons on a managed Kubernetes cluster using Coopernetes, or you are interested in deploying the infrastructure yourself, please reach out to friends@colab.coop.
 
 ## Tools
 To manage the AWS infrastructure:
@@ -36,7 +36,6 @@ To deploy, simply launch the `coopernetes-deploy` container in CircleCI, and the
 2. Calls `helfile apply .deploy/helmfile.yaml`.
 
 If you are using a custom chart for the project, we recommend putting it at `.deploy/chart/`.
-
 
 ## Relevant documents / blog posts for intallation:
 1. https://cert-manager.io/docs/tutorials/acme/ingress/
