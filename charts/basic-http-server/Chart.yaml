@@ -1,0 +1,5 @@
+apiVersion: v2
+name: basic-http-server
+description: A simple helm chart for deploying simple http apps to coopernetes. This chart assumes you have a docker container you want to build, you want it publicly accessible, and that you don't need any volumes or storage attached.
+type: application
+version: 0.1.2

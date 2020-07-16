@@ -1,0 +1,4 @@
+issuer: "letsyencrypt-prod"
+image:
+  tag: gcr.io/kuar-demo/kuard-amd64:1
+  port: 8080
