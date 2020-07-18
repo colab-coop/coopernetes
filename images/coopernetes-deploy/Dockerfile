@@ -1,6 +1,5 @@
 FROM quay.io/roboll/helmfile:helm3-v0.119.0
 WORKDIR /
-ADD VERSION .
 
 RUN apk add --no-cache docker \
       python \
@@ -12,3 +11,4 @@ RUN apk add --no-cache docker \
       chmod +x /usr/local/bin/aws-iam-authenticator
 
 COPY coopctl /usr/local/bin/coopctl
+ADD VERSION .
