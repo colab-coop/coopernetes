@@ -1,4 +1,4 @@
-issuer: "letsyencrypt-prod"
+issuer: "letsencrypt-prod"
 host: host.example.com
 image:
   tag: gcr.io/kuar-demo/kuard-amd64:1
