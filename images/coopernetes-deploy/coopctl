@@ -1,7 +1,34 @@
 #!/bin/bash
+# A shell script to deploy to coopernetes
+# Written by: Ian Davis
+# Last updated on: July 17, 2020
+# -------------------------------------------------------
+
+usage="$(basename "$0") subcommand
+
+where 'subcommand is:
+    deploy    Deploy this project to coopernetes
+    dry-run   Generate a plan to deploy, but don't apply it"
+
+subcommand=$1
+case "$subcommand" in
+  deploy )
+    ;;
+  dry-run )
+    ;;
+  \? )
+    echo "You must specify a subcommand:" 1>&2
+    echo $usage 1>&2
+    exit 1
+    ;;
+  : )
+    echo "You must specify a subcommand:" 1>&2
+    echo $usage 1>&2
+    exit 1
+    ;;
+esac
 
 #DOCKER BUILD
-
 PROJECT_PATH=$(git rev-parse --show-toplevel)
 if test -z "$DOCKERFILE"; then
   DOCKERFILE="$PROJECT_PATH/.deploy/Dockerfile"
@@ -34,7 +61,9 @@ fi
 echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin
 echo Tagging docker image with $DOCKER_TAG
 docker build --tag $DOCKER_TAG $DOCKER_CONTEXT -f $DOCKERFILE
-docker push $DOCKER_TAG
+if [ $subcommand == 'deploy' ]; then
+  docker push $DOCKER_TAG
+fi
 
 # HELMFILE APPLY
 
@@ -62,4 +91,8 @@ if test ! -f "$HELMFILE"; then
     exit 1
 fi
 aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
-helmfile --file $HELMFILE apply
+if [ $subcommand == 'deploy' ]; then
+  helmfile --file $HELMFILE apply
+else # deploy
+  helmfile --file $HELMFILE diff
+fi
