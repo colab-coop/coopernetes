@@ -13,6 +13,7 @@ repositories:
   url: https://kubecost.github.io/cost-analyzer/
 
 releases:
+  ### Ingress and SSL Certificates
   # NOTE: there are two nginx ingress charts, one maintained my nginx and one maintained by the kubernetes community.
   # we use the community one (ingress-nginx) rather than the nginx one (nginx-ingress). When reading tutorials make
   # sure to pay attention to which ingress they are referring to. It's availible at https://github.com/kubernetes/ingress-nginx
@@ -38,6 +39,7 @@ releases:
   - name: cluster-issuers
     namespace: cert-manager
     chart: ./charts/cluster-issuers/
+  ### Cost analysis
   - name: kubecost
     namespace: kubecost
     chart: kubecost/cost-analyzer
