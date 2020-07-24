@@ -3,6 +3,8 @@ repositories:
   url: https://kubernetes-charts.storage.googleapis.com
 - name: incubator
   url: https://kubernetes-charts-incubator.storage.googleapis.com
+- name: kubernetes-dashboard
+  url: https://kubernetes.github.io/dashboard/
 - name: bitnami
   url: https://charts.bitnami.com/bitnami
 - name: ingress-nginx
@@ -13,6 +15,12 @@ repositories:
   url: https://kubecost.github.io/cost-analyzer/
 
 releases:
+  ### Dashboard
+  - name: kubernetes-dashboard
+    namespace: kube-system
+    chart: kubernetes-dashboard/kubernetes-dashboard
+    values:
+    - fullnameOverride: 'kubernetes-dashboard'
   ### Ingress and SSL Certificates
   # NOTE: there are two nginx ingress charts, one maintained my nginx and one maintained by the kubernetes community.
   # we use the community one (ingress-nginx) rather than the nginx one (nginx-ingress). When reading tutorials make
