@@ -2,6 +2,10 @@
 
 set -ex
 
+if ! (output=$(git status --porcelain) && [ -z "$output" ]); then
+  echo "Cowardly refusing to create git tag while repo is dirty"
+  exit 1
+fi
 
 dir=$1
 repo=$(git rev-parse --show-toplevel)/docs/charts/
