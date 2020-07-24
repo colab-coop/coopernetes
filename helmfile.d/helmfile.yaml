@@ -46,3 +46,46 @@ releases:
     set:
       - name: kubecostToken
         value: aWFuQGNvbGFiLmNvb3A=xm343yadf98
+  ### Log Aggregation
+  - name: elasticsearch
+    namespace: system-logging
+    chart: bitnami/elasticsearch
+  - name: kibana
+    namespace: system-logging
+    chart: bitnami/kibana
+    set:
+      - name: elasticsearch.enabled
+        value: false
+      - name: elasticsearch.external.hosts[0]
+        value: ELASTICSEARCH-COORDINATING-NODE-NAME
+      - name: elasticsearch.external.port
+        value: 9200
+      - name: service.type
+        value: LoadBalancer
+  - name: fluentd-config
+    namespace: system-logging
+    chart: ./charts/fluentd-config/
+  - name: fluentd
+    namespace: system-logging
+    chart: bitnami/kibana
+    set:
+      - name: aggregator.configMap
+        value: elasticsearch-output
+      - name: forwarder.configMap
+        value: apache-log-parser
+      - name: aggregator.extraEnv[0].name
+        value: ELASTICSEARCH_HOST
+      - name: aggregator.extraEnv[0].value
+        value: ELASTICSEARCH-COORDINATING-NODE-NAME
+      - name: aggregator.extraEnv[1].name
+        value: ELASTICSEARCH_PORT
+      - name: aggregator.extraEnv[1].value
+        value: 9200
+      - name: forwarder.extraEnv[0].name
+        value: FLUENTD_DAEMON_USER
+      - name: forwarder.extraEnv[0].value
+        value: root
+      - name: forwarder.extraEnv[1].name
+        value: FLUENTD_DAEMON_GROUP
+      - name: forwarder.extraEnv[1].value
+        value: root

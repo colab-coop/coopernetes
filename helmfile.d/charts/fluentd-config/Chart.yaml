@@ -1,0 +1,5 @@
+apiVersion: v2
+name: fluentd-config
+description: Config Maps for fluentd
+type: application
+version: 0.1.0
