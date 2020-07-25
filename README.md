@@ -18,7 +18,7 @@ To manage and deploy applications on kubernetes:
 - the helm-secrets plugin: `helm plugin install https://github.com/futuresimple/helm-secrets`
 
 ## Creating a cluster
-Forked from the steps at https://learn.hashicorp.com/terraform/kubernetes/provision-eks-cluster
+Based on the example at https://github.com/terraform-aws-modules/terraform-aws-eks/blob/7de18cd9cd882f6ad105ca375b13729537df9e68/examples/managed_node_groups/main.tf
 1. From inside the `eks` folder `terraform apply`
 1. Configure kubectl with the generated kubeconfig: `aws eks --region us-east-1 --profile=coopernetes update-kubeconfig --name coopernetes-test-vxA2m96J`
 1. From inside the `kubernetes` folder run `terraform apply`: NOTE: These must be done as separate steps because the kubeconfig generated in step one is necessary to configure the kubernetes provider.
