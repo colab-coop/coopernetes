@@ -29,6 +29,10 @@ releases:
     chart: kubernetes-dashboard/kubernetes-dashboard
     values:
     - fullnameOverride: 'kubernetes-dashboard'
+  ### Docker registry
+  - name: docker-registry
+    namespace: kube-public
+    chart: stable/docker-registry
   ### Ingress and SSL Certificates
   # NOTE: there are two nginx ingress charts, one maintained my nginx and one maintained by the kubernetes community.
   # we use the community one (ingress-nginx) rather than the nginx one (nginx-ingress). When reading tutorials make
