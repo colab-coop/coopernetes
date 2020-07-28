@@ -37,7 +37,7 @@ if test -z "$DOCKER_CONTEXT"; then
   DOCKER_CONTEXT="$PROJECT_PATH/"
 fi
 if test -z "$DOCKER_REPO"; then
-  DOCKER_REPO="colabcoop/$CIRCLE_PROJECT_REPONAME"
+  DOCKER_REPO="$DOCKER_ORG/$CIRCLE_PROJECT_REPONAME"
 fi
 
 GIT_TAG=$(git rev-parse --short HEAD)
