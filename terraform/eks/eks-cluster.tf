@@ -31,22 +31,15 @@ module "eks" {
 
   vpc_id = module.vpc.vpc_id
 
-  worker_groups = [
-    {
-      name                          = "worker-group-1"
-      instance_type                 = var.worker_group_1_type
-      additional_userdata           = "echo foo bar"
-      asg_desired_capacity          = var.worker_group_1_count
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
-    },
-    {
-      name                          = "worker-group-2"
-      instance_type                 = var.worker_group_2_type
-      additional_userdata           = "echo foo bar"
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = var.worker_group_2_count
-    },
-  ]
+  node_groups = {
+    t3-medium = {
+      desired_capacity = 4
+      max_capacity     = 10
+      min_capacity     = 4
+
+      instance_type = "t3.medium"
+    }
+  }
 }
 
 data "aws_eks_cluster" "cluster" {
