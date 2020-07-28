@@ -16,6 +16,12 @@ repositories:
 - name: akomljen
   url: https://raw.githubusercontent.com/komljen/helm-charts/master/charts/
 
+# We need to disable validation because we install CRDs and their associated custom resources in one pass
+# https://github.com/roboll/helmfile/blob/1e260e4a5ecd57a4c84cdbc98f569a52b7735bb2/pkg/state/state.go#L193-L196.
+# This requires helmfile v0.125.0
+helmDefaults:
+  disableValidation: true
+
 releases:
   ### Dashboard
   - name: kubernetes-dashboard
