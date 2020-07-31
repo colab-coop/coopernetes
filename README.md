@@ -22,6 +22,8 @@ Based on the example at https://github.com/terraform-aws-modules/terraform-aws-e
 1. From inside the `terraform/eks` folder `terraform apply`
 1. Configure kubectl with the generated kubeconfig: `aws eks --region us-west-2 --profile=<AWS_PROFILE> update-kubeconfig --name <CLUSTER_NAME>`
 1. `helmfile apply` in the root folder.
+1. Once you deploy your first application with an Ingress, run `kubectl get ingress --all-namespaces` to list the address associated with the ingress. That is the load balancer for all inbound requests on the clster. You should create a DNS entry pointing to this load balancer for all services you want to create.
+1. Port forward into kibana by running the command from below, then go to Discover menu item, configure the index to `kubernetes_cluster*`, choose a `@timestamp` and Kibana is ready.
 
 ## Setting up CD for a new project:
 All deployment related files, including the chart, helmfile, and Dockfile, should all live in a folder called `.deploy` in the root of the repository.
@@ -35,3 +37,7 @@ If you are using a custom chart for the project, we recommend putting it at `.de
 ## Relevant documents / blog posts for intallation:
 1. https://cert-manager.io/docs/tutorials/acme/ingress/
 1. https://cert-manager.io/docs/installation/kubernetes/
+
+## Working with the cluster:
+- *logs*: `kubectl port-forward deployment/efk-kibana 5601 -n system-logging`
+- *kubecost*: `kubectl port-forward deployment/kubecost-cost-analyzer 9090 -n kubecost`
