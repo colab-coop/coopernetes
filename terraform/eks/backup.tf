@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "backups" {
 }
 
 resource "aws_iam_role" "backup-bot" {
-  name = "backup-bot"
+  name = "${var.cluster_name}-backup-bot"
 
   assume_role_policy = <<EOF
 {
@@ -77,3 +77,6 @@ resource "aws_iam_role_policy" "backup-bot" {
 EOF
 }
 
+output "backup-bot-arn" {
+  value = aws_iam_role.backup-bot.arn
+}
