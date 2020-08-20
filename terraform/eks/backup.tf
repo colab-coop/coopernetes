@@ -1,11 +1,11 @@
-resource "aws_s3_bucket" "coopernetes-backups" {
-  bucket = "coopernetes-backups-${var.cluster_name}"
+resource "aws_s3_bucket" "backups" {
+  bucket = "${var.cluster_name}-backups"
   region = var.region
   acl    = "private"
 }
 
-resource "aws_iam_role" "coopernetes-backup-bot" {
-  name = "coopernetes-backup-bot"
+resource "aws_iam_role" "backup-bot" {
+  name = "backup-bot"
 
   assume_role_policy = <<EOF
 {
@@ -30,9 +30,9 @@ resource "aws_iam_role" "coopernetes-backup-bot" {
 EOF
 }
 
-resource "aws_iam_role_policy" "coopernetes-backup-bot" {
-  name = "coopernetes-backup-bot"
-  role = aws_iam_role.coopernetes-backup-bot.arn
+resource "aws_iam_role_policy" "backup-bot" {
+  name = "${var.cluster_name}-backup-bot"
+  role = aws_iam_role.backup-bot.arn
 
   policy = <<EOF
 {
@@ -60,7 +60,7 @@ resource "aws_iam_role_policy" "coopernetes-backup-bot" {
                 "s3:ListMultipartUploadParts"
             ],
             "Resource": [
-                "${aws_s3_bucket.coopernetes-backups.arn}"
+                "${aws_s3_bucket.backups.arn}"
             ]
         },
         {
@@ -69,7 +69,7 @@ resource "aws_iam_role_policy" "coopernetes-backup-bot" {
                 "s3:ListBucket"
             ],
             "Resource": [
-                "${aws_s3_bucket.coopernetes-backups.arn}"
+                "${aws_s3_bucket.backups.arn}"
             ]
         }
     ]
