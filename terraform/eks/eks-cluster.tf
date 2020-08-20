@@ -15,9 +15,10 @@ module "eks" {
   cluster_version = "1.15"
   subnets         = module.vpc.private_subnets
 
-  manage_aws_auth = true
-  map_roles       = local.map_roles
-  map_users       = local.map_users
+  manage_aws_auth   = true
+  workers_role_name = aws_iam_role.coopernetes-worker.name
+  map_roles         = local.map_roles
+  map_users         = local.map_users
 
   vpc_id = module.vpc.vpc_id
 
