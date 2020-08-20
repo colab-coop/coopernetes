@@ -19,10 +19,6 @@ module "eks" {
   map_roles       = local.map_roles
   map_users       = local.map_users
 
-  tags = {
-    Environment = var.env
-  }
-
   vpc_id = module.vpc.vpc_id
 
   node_groups = {
