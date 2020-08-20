@@ -6,13 +6,7 @@ locals {
       groups   = ["system:masters"]
     },
   ]
-  map_roles = [
-    {
-      rolearn  = "arn:aws:iam::395720434993:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccess_729dbe7623fb0433"
-      username = "devops"
-      groups   = ["system:masters"]
-    },
-  ]
+  map_roles = []
 }
 
 module "eks" {
