@@ -32,7 +32,7 @@ EOF
 
 resource "aws_iam_role_policy" "backup-bot" {
   name = "${var.cluster_name}-backup-bot"
-  role = aws_iam_role.backup-bot.arn
+  role = aws_iam_role.backup-bot.id
 
   policy = <<EOF
 {
