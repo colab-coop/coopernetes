@@ -21,7 +21,7 @@ resource "aws_iam_role" "coopernetes-backup-bot" {
         {
             "Effect": "Allow",
             "Principal": {
-                "AWS": "${aws_iam_role.coopernetes-worker.arn}"
+                "AWS": "${module.eks.worker_iam_role_arn}"
             },
             "Action": "sts:AssumeRole"
         }
@@ -76,3 +76,4 @@ resource "aws_iam_role_policy" "coopernetes-backup-bot" {
 }
 EOF
 }
+
