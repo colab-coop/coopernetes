@@ -47,6 +47,20 @@ releases:
           service:
             annotations:
               service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+  - name: kube2iam
+    namespace: kube-system
+    chart: stable/kube2iam
+    version: 0.2.0
+    values:
+      - aws:
+          region: "us-west-2"
+        extraArgs:
+          base-role-arn: arn:aws:iam::909345235525:role/
+        host:
+          iptables: true
+          interface: eni+
+        rbac:
+          create: true
   - name: cert-manager
     namespace: cert-manager
     chart: jetstack/cert-manager
