@@ -4,35 +4,13 @@ resource "aws_s3_bucket" "backups" {
   acl    = "private"
 }
 
-resource "aws_iam_role" "backup-bot" {
+resource "aws_iam_user" "backup-bot" {
   name = "${var.cluster_name}-backup-bot"
-
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ec2.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-        },
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "${module.eks.worker_iam_role_arn}"
-            },
-            "Action": "sts:AssumeRole"
-        }
-    ]
-}
-EOF
 }
 
-resource "aws_iam_role_policy" "backup-bot" {
+resource "aws_iam_user_policy" "backup-bot" {
   name = "${var.cluster_name}-backup-bot"
-  role = aws_iam_role.backup-bot.id
+  user = aws_iam_user.backup-bot.id
 
   policy = <<EOF
 {
@@ -75,8 +53,4 @@ resource "aws_iam_role_policy" "backup-bot" {
     ]
 }
 EOF
-}
-
-output "backup-bot-arn" {
-  value = aws_iam_role.backup-bot.arn
 }
