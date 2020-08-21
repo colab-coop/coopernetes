@@ -60,7 +60,7 @@ resource "aws_iam_role_policy" "backup-bot" {
                 "s3:ListMultipartUploadParts"
             ],
             "Resource": [
-                "${aws_s3_bucket.backups.arn}"
+                "${aws_s3_bucket.backups.arn}/*"
             ]
         },
         {
