@@ -15,6 +15,8 @@ repositories:
   url: https://kubecost.github.io/cost-analyzer/
 - name: akomljen
   url: https://raw.githubusercontent.com/komljen/helm-charts/master/charts/
+- name: vmware-tanzu
+  url: https://vmware-tanzu.github.io/helm-charts
 
 # We need to disable validation because we install CRDs and their associated custom resources in one pass
 # https://github.com/roboll/helmfile/blob/1e260e4a5ecd57a4c84cdbc98f569a52b7735bb2/pkg/state/state.go#L193-L196.
@@ -74,6 +76,7 @@ releases:
   ### Cost analysis
   - name: kubecost
     namespace: kubecost
+    version: 1.62.0
     chart: kubecost/cost-analyzer
     set:
       - name: kubecostToken
@@ -85,3 +88,39 @@ releases:
   - name: efk
     namespace: system-logging
     chart: akomljen/efk
+  ### Backups
+  - name: velero
+    namespace: system-backup
+    chart: vmware-tanzu/velero
+    version: 2.12.15
+    set:
+      - name: configuration.provider
+        value: aws
+      - name: configuration.backupStorageLocation.name
+        value: default
+      - name: configuration.backupStorageLocation.bucket
+        value: thich-nhat-hanh-backups
+      - name: configuration.backupStorageLocation.config.region
+        value: us-west-2
+      - name: configuration.volumeSnapshotLocation.name
+        value: default
+      - name: configuration.volumeSnapshotLocation.config.region
+        value: us-west-2
+      - name: image.repository
+        value: velero/velero
+      - name: image.tag
+        value: v1.4.2
+      - name: image.pullPolicy
+        value: IfNotPresent
+      - name: initContainers[0].name
+        value: velero-plugin-for-aws
+      - name: initContainers[0].image
+        value: velero/velero-plugin-for-aws:v1.1.0
+      - name: initContainers[0].volumeMounts[0].mountPath
+        value: /target
+      - name: initContainers[0].volumeMounts[0].name
+        value: plugins
+      - name: pod-annotations
+        value: iam.amazonaws.com/role=thich-nhat-hanh-backup-bot
+      - name: no-secret
+        value: true
