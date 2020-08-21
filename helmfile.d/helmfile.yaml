@@ -78,7 +78,7 @@ releases:
     set:
       - name: kubecostToken
         value: aWFuQGNvbGFiLmNvb3A=xm343yadf98
-  ### Log Aggregation
+  ### Log Aggregation - TODO remove
   - name: es-operator
     namespace: system-logging
     chart: akomljen/elasticsearch-operator
