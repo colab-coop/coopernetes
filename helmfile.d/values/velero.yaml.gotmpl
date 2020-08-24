@@ -1,0 +1,29 @@
+image:
+  repository: velero/velero
+  tag: v1.4.2
+  pullPolicy: IfNotPresent
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.1.0
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+configuration:
+  provider: aws
+  logLevel: debug
+  backupStorageLocation:
+    bucket: thich-nhat-hanh-backups
+    name: default
+    config:
+      region: us-west-2
+  volumeSnapshotLocation:
+    name: default
+    config:
+      region: us-west-2
+credentials:
+  useSecret: true
+  secretContents:
+    cloud: |
+      [default]
+      aws_access_key_id={{ requiredEnv "VELERO_AWS_ACCESS_KEY_ID" }}
+      aws_secret_access_key={{ requiredEnv "VELERO_AWS_SECRET_ACCESS_KEY" }}
