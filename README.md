@@ -28,6 +28,9 @@ Based on the example at https://github.com/terraform-aws-modules/terraform-aws-e
 1. Once the velero client is installed, you need to run a couple commands to configure and setup backups:
   - Run `velero client config set namespace=system-backups`. This tells velero what namespace we installed it it.
   - Run `velero backup create test-backup` to test the backup functionality
+1. Once prometheus-operator is installed, you should add the following dashboard to grafana: https://grafana.com/grafana/dashboards/8670.
+  - You can run the grafan dashboard by finding the grafana pod in the system-monitoring namespace, and then running: `kubectl port-forward <GRAFANA_POD> -n system-monitoring 3000:3000`
+  - You can log in with the user `admin` and the passwor `prom-operator`. Since you need access to the cluster to port forward, these account credentials can be shared freely.
 
 ## Setting up CD for a new project:
 All deployment related files, including the chart, helmfile, and Dockfile, should all live in a folder called `.deploy` in the root of the repository.
