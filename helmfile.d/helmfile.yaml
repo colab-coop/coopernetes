@@ -60,13 +60,16 @@ releases:
     namespace: cert-manager
     chart: ./charts/cluster-issuers/
   ### Cost analysis
-  - name: kubecost
-    namespace: kubecost
-    version: 1.62.0
-    chart: kubecost/cost-analyzer
-    set:
-      - name: kubecostToken
-        value: aWFuQGNvbGFiLmNvb3A=xm343yadf98
+  # They apparently just deploy prometheus operator for kuebcost.
+  # Remove for now because it causes a conflict. If we want, we can add it back later.
+  # We can install the kubecost dashboard instead, I think: https://grafana.com/grafana/dashboards/8670
+   #- name: kubecost
+   #  namespace: kubecost
+   #  version: 1.62.0
+   #  chart: kubecost/cost-analyzer
+   #  set:
+   #    - name: kubecostToken
+   #      value: aWFuQGNvbGFiLmNvb3A=xm343yadf98
   ### Log Aggregation
   # Typically only needed for large clusters with lots of logs.
   # For small clusters, you can grab the logs of an individual pod with kuebctl logs.
