@@ -86,3 +86,8 @@ releases:
     version: 2.12.15
     values:
       - ./values/velero.yaml.gotmpl
+  ### Monitoring
+  - name: prometheus-operator
+    namespace: system-monitoring
+    chart: stable/prometheus-operator
+    version: 9.3.1
