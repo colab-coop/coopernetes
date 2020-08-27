@@ -67,13 +67,15 @@ releases:
     set:
       - name: kubecostToken
         value: aWFuQGNvbGFiLmNvb3A=xm343yadf98
-  ### Log Aggregation - TODO remove
-  - name: es-operator
-    namespace: system-logging
-    chart: akomljen/elasticsearch-operator
-  - name: efk
-    namespace: system-logging
-    chart: akomljen/efk
+  ### Log Aggregation
+  # Typically only needed for large clusters with lots of logs.
+  # For small clusters, you can grab the logs of an individual pod with kuebctl logs.
+   #- name: es-operator
+   #  namespace: system-logging
+   #  chart: akomljen/elasticsearch-operator
+   #- name: efk
+   #  namespace: system-logging
+   #  chart: akomljen/efk
   ### Backups
   - name: velero
     namespace: system-backup
