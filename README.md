@@ -39,6 +39,8 @@ To deploy, simply launch the `coopernetes-deploy` container in CircleCI and use 
 1. Builds a docker image using the Dockerfile at `.deploy/Dockerfile` and the project root as the context.
 1. Calls `helfile apply .deploy/helmfile.yaml`.
 1. Run `velero schedule create daily-<NAMESPACE>-backup --schedule="0 0 * * *" --include-namespaces <NAMESPACE>` to setup a backup schedule for the namespace.
+1. Keep in mind, nodes have a maximum number of pods they can support, as indicated on the following list: https://github.com/awslabs/amazon-eks-ami/blob/master/files/eni-max-pods.txt
+
 
 If you are using a custom chart for the project, we recommend putting it at `.deploy/chart/`.
 
