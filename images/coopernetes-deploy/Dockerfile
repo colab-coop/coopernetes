@@ -2,6 +2,7 @@ FROM quay.io/roboll/helmfile:helm3-v0.119.0
 WORKDIR /
 
 RUN apk add --no-cache docker \
+      terraform \
       python \
       py-pip && \
       pip install awscli --upgrade --user && \
