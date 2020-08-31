@@ -2,17 +2,17 @@ terraform {
   required_version = ">= 0.12.9"
 
   backend "s3" {
-    bucket  = "itme-operations"
-    key     = "terraform/us-west-2/eks/thich-nhat-hanh.tfstate"
-    region  = "us-west-2"
-    profile = "itme"
+    bucket  = "coopernetes-operations"
+    key     = "terraform/staging/us-east-1/eks.tfstate"
+    region  = "us-east-1"
+    profile = "coopernetes"
   }
 }
 
 provider "aws" {
   version = ">= 2.52.1"
-  region  = "us-west-2"
-  profile = "itme"
+  region  = "us-east-1"
+  profile = "coopernetes"
 }
 
 provider "kubernetes" {
