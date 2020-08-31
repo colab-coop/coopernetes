@@ -1,6 +1,5 @@
 resource "aws_s3_bucket" "backups" {
   bucket = "${var.cluster_name}-backups"
-  region = var.region
   acl    = "private"
 }
 
