@@ -24,6 +24,12 @@ repositories:
 helmDefaults:
   disableValidation: true
 
+environments:
+  # The "default" environment is available and used when `helmfile` is run without `--environment NAME`.
+  default:
+    values:
+      - ../terraform/eks/generated/helmfile.yaml
+
 releases:
   ### Dashboard
   - name: kubernetes-dashboard

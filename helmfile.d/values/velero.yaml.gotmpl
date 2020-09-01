@@ -12,14 +12,14 @@ configuration:
   provider: aws
   logLevel: debug
   backupStorageLocation:
-    bucket: thich-nhat-hanh-backups
+    bucket: {{ .Values.velero.bucket }}
     name: default
     config:
-      region: us-west-2
+      region: {{ .Values.region }}
   volumeSnapshotLocation:
     name: default
     config:
-      region: us-west-2
+      region: {{ .Values.region }}
 credentials:
   useSecret: true
   secretContents:
