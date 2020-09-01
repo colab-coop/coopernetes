@@ -17,8 +17,8 @@ resource "local_file" "secrets" {
   # This is a secret configuration file needed by helmfile.
   # It contains all secret values created by terraform that are needed by helmfile.
   velero:
-    access_key_id: CHANGE_ME
-    secret_access_key: CHANGE_ME
+    aws_access_key_id: ${aws_iam_access_key.backup-bot.id}
+    aws_secret_access_key: ${aws_iam_access_key.backup-bot.secret}
 YAML
 
   provisioner "local-exec" {

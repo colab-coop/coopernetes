@@ -25,5 +25,5 @@ credentials:
   secretContents:
     cloud: |
       [default]
-      aws_access_key_id={{ requiredEnv "VELERO_AWS_ACCESS_KEY_ID" }}
-      aws_secret_access_key={{ requiredEnv "VELERO_AWS_SECRET_ACCESS_KEY" }}
+      aws_access_key_id={{ .Values.velero.aws_access_key_id }}
+      aws_secret_access_key={{ .Values.velero.aws_secret_access_key }}

@@ -7,6 +7,10 @@ resource "aws_iam_user" "backup-bot" {
   name = "${local.cluster_name}-backup-bot"
 }
 
+resource "aws_iam_access_key" "backup-bot" {
+  user = aws_iam_user.backup-bot.name
+}
+
 resource "aws_iam_user_policy" "backup-bot" {
   name = "${local.cluster_name}-backup-bot"
   user = aws_iam_user.backup-bot.id
