@@ -2,10 +2,11 @@ terraform {
   required_version = ">= 0.12.9"
 
   backend "s3" {
-    bucket  = "coopernetes-operations"
-    key     = "terraform/staging/us-east-1/eks.tfstate"
-    region  = "us-east-1"
-    profile = "coopernetes"
+    bucket    = "coopernetes-operations"
+    key       = "terraform/staging/us-east-1/eks.tfstate"
+    region    = "us-east-1"
+    profile   = "coopernetes"
+    encrypted = true
   }
 }
 
