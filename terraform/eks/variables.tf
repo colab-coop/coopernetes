@@ -1,5 +1,5 @@
 variable "region" {}
-
+variable "profile" {}
 variable "env" {}
 
 variable "cluster_name" {
