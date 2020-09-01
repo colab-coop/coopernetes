@@ -28,7 +28,9 @@ environments:
   # The "default" environment is available and used when `helmfile` is run without `--environment NAME`.
   default:
     values:
-      - ../terraform/eks/generated/helmfile.yaml
+      - ../terraform/eks/generated/env.yaml
+    secrets:
+      - ../terraform/eks/generated/secrets.yaml
 
 releases:
   ### Dashboard

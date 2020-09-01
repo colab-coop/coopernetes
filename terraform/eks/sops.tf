@@ -5,8 +5,13 @@ resource "aws_kms_key" "sops" {
   description = "KMS Key for sops with helm-secrets plugin"
 }
 
+resource "aws_kms_alias" "helm-secrets" {
+  name          = "alias/helm-secrets"
+  target_key_id = aws_kms_key.sops.key_id
+}
+
 resource "local_file" "sops" {
-  filename = "${path.module}/generated/sops.yaml"
+  filename = "${local.generated}/sops.yaml"
   content  = <<-YAML
   sops:
     kms:
@@ -19,9 +24,4 @@ resource "local_file" "sops" {
         - kms: ${aws_kms_key.sops.arn}
           aws_profile: ${var.profile}
 YAML
-}
-
-resource "aws_kms_alias" "helm-secrets" {
-  name          = "alias/helm-secrets"
-  target_key_id = aws_kms_key.sops.key_id
 }
