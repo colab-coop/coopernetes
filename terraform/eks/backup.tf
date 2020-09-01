@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "backups" {
-  bucket = "${local.cluster_name}-backups"
+  bucket = "${lower(local.cluster_name)}-backups"
   acl    = "private"
 }
 
