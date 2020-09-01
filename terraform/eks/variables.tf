@@ -1,10 +1,9 @@
-variable "region" {
-  default     = "us-east-1"
-  description = "AWS region"
-}
+variable "region" {}
 
-variable "env" {
-  default = "test"
+variable "env" {}
+
+variable "cluster_name" {
+  default = "UNDEFINED"
 }
 
 resource "random_string" "suffix" {
@@ -12,9 +11,8 @@ resource "random_string" "suffix" {
   special = false
 }
 
-variable "cluster_name" {
-  default = "UNDEFINED"
-}
+# TODO switch to random_pet
+# resource "random_pet" "suffix" {}
 
 locals {
   default_cluster_name = "coopernetes-${var.env}-${random_string.suffix.result}"

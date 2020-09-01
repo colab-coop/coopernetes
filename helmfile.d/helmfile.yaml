@@ -15,6 +15,20 @@ repositories:
   url: https://kubecost.github.io/cost-analyzer/
 - name: akomljen
   url: https://raw.githubusercontent.com/komljen/helm-charts/master/charts/
+- name: vmware-tanzu
+  url: https://vmware-tanzu.github.io/helm-charts
+
+# We need to disable validation because we install CRDs and their associated custom resources in one pass
+# https://github.com/roboll/helmfile/blob/1e260e4a5ecd57a4c84cdbc98f569a52b7735bb2/pkg/state/state.go#L193-L196.
+# This requires helmfile v0.125.0
+helmDefaults:
+  disableValidation: true
+
+environments:
+  # The "default" environment is available and used when `helmfile` is run without `--environment NAME`.
+  default:
+    values:
+      - ../terraform/eks/generated/helmfile.yaml
 
 releases:
   ### Dashboard
@@ -36,6 +50,8 @@ releases:
         value: true
     values:
       - controller:
+          extraArgs:
+            enable-ssl-passthrough: true
           service:
             annotations:
               service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
@@ -49,17 +65,24 @@ releases:
   - name: cluster-issuers
     namespace: cert-manager
     chart: ./charts/cluster-issuers/
-  ### Cost analysis
-  - name: kubecost
-    namespace: kubecost
-    chart: kubecost/cost-analyzer
-    set:
-      - name: kubecostToken
-        value: aWFuQGNvbGFiLmNvb3A=xm343yadf98
   ### Log Aggregation
-  - name: es-operator
-    namespace: system-logging
-    chart: akomljen/elasticsearch-operator
-  - name: efk
-    namespace: system-logging
-    chart: akomljen/efk
+  # Typically only needed for large clusters with lots of logs.
+  # For small clusters, you can grab the logs of an individual pod with kuebctl logs.
+   #- name: es-operator
+   #  namespace: system-logging
+   #  chart: akomljen/elasticsearch-operator
+   #- name: efk
+   #  namespace: system-logging
+   #  chart: akomljen/efk
+  ### Backups
+  - name: velero
+    namespace: system-backup
+    chart: vmware-tanzu/velero
+    version: 2.12.15
+    values:
+      - ./values/velero.yaml.gotmpl
+  ### Monitoring
+  - name: prometheus-operator
+    namespace: system-monitoring
+    chart: stable/prometheus-operator
+    version: 9.3.1

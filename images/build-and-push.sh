@@ -13,10 +13,16 @@ version=`cat VERSION`
 
 image=${dir%/}
 image_tag="colabcoop/$image:$version"
+git_tag="image-$image-$version"
+
+if git rev-parse $git_tag >/dev/null 2>&1; then
+  echo "Cowardly refusing to build $image_tag when git tag $git_tag already exists"
+  exit 1
+fi
+
 docker build -t $image_tag .
 docker push $image_tag
 
-git_tag="image-$image-$version"
 git tag $git_tag
 git push --tags
 

@@ -6,13 +6,7 @@ locals {
       groups   = ["system:masters"]
     },
   ]
-  map_roles = [
-    {
-      rolearn  = "arn:aws:iam::395720434993:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccess_729dbe7623fb0433"
-      username = "devops"
-      groups   = ["system:masters"]
-    },
-  ]
+  map_roles = []
 }
 
 module "eks" {
@@ -24,10 +18,6 @@ module "eks" {
   manage_aws_auth = true
   map_roles       = local.map_roles
   map_users       = local.map_users
-
-  tags = {
-    Environment = var.env
-  }
 
   vpc_id = module.vpc.vpc_id
 
