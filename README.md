@@ -55,5 +55,5 @@ If you are using a custom chart for the project, we recommend putting it at `.de
 1. https://cert-manager.io/docs/installation/kubernetes/
 
 ## Working with the cluster:
-- *logs*: `kubectl port-forward deployment/efk-kibana 5601 -n system-logging`
-- *kubecost*: `kubectl port-forward deployment/kubecost-cost-analyzer 9090 -n kubecost`
+- *log-aggregator (if installed)*: `kubectl port-forward deployment/efk-kibana 5601 -n system-logging`
+- *grafana*: `kubectl port-forward -n system-monitoring prometheus-operator-grafana-RANDOM-ID 3000:3000`
