@@ -52,8 +52,6 @@ releases:
         value: true
     values:
       - controller:
-          extraArgs:
-            enable-ssl-passthrough: true
           service:
             annotations:
               service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
