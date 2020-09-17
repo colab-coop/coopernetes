@@ -1,4 +1,4 @@
-FROM quay.io/roboll/helmfile:helm3-v0.119.0
+FROM quay.io/roboll/helmfile:helm3-v0.129.3
 WORKDIR /
 
 RUN apk add --no-cache docker \
