@@ -2,7 +2,18 @@ apiVersion: v1
 entries:
   basic-http-server:
   - apiVersion: v2
-    created: "2020-10-28T09:17:19.107948-07:00"
+    created: "2020-10-28T09:30:55.665499-07:00"
+    description: A simple helm chart for deploying http apps to coopernetes. To make
+      it publicly routable, set the host value. To add a persistent volume, set the
+      disk value.
+    digest: 1ec0417624f52c43947d102c96023d1837faca59c9abe14f6609a3fa6bfd6f0e
+    name: basic-http-server
+    type: application
+    urls:
+    - https://colab-coop.github.io/coopernetes/charts/basic-http-server-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    created: "2020-10-28T09:30:55.665119-07:00"
     description: A simple helm chart for deploying http apps to coopernetes. To make
       it publicly routable, set the host value. To add a persistent volume, set the
       disk value.
@@ -13,7 +24,7 @@ entries:
     - https://colab-coop.github.io/coopernetes/charts/basic-http-server-0.1.5.tgz
     version: 0.1.5
   - apiVersion: v2
-    created: "2020-10-28T09:17:19.107465-07:00"
+    created: "2020-10-28T09:30:55.661933-07:00"
     description: A simple helm chart for deploying simple http apps to coopernetes.
       This chart assumes you have a docker container you want to build, you want it
       publicly accessible, and that you don't need any volumes or storage attached.
@@ -24,7 +35,7 @@ entries:
     - https://colab-coop.github.io/coopernetes/charts/basic-http-server-0.1.4.tgz
     version: 0.1.4
   - apiVersion: v2
-    created: "2020-10-28T09:17:19.106766-07:00"
+    created: "2020-10-28T09:30:55.661313-07:00"
     description: A simple helm chart for deploying simple http apps to coopernetes.
       This chart assumes you have a docker container you want to build, you want it
       publicly accessible, and that you don't need any volumes or storage attached.
@@ -35,7 +46,7 @@ entries:
     - https://colab-coop.github.io/coopernetes/charts/basic-http-server-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v2
-    created: "2020-10-28T09:17:19.105701-07:00"
+    created: "2020-10-28T09:30:55.660622-07:00"
     description: A simple helm chart for deploying simple http apps to coopernetes.
       This chart assumes you have a docker container you want to build, you want it
       publicly accessible, and that you don't need any volumes or storage attached.
@@ -45,4 +56,4 @@ entries:
     urls:
     - https://colab-coop.github.io/coopernetes/charts/basic-http-server-0.1.2.tgz
     version: 0.1.2
-generated: "2020-10-28T09:17:19.104363-07:00"
+generated: "2020-10-28T09:30:55.659662-07:00"
