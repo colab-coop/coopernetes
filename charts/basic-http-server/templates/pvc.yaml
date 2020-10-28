@@ -1,10 +1,10 @@
 {{- if .Values.disk}}
-kind: "PersistentVolumeClaim"
-apiVersion: "v1"
+kind: PersistentVolumeClaim
+apiVersion: v1
 metadata:
-  name: {{ .Release.name }}-data
+  name: {{ .Release.Name }}-data
   labels:
-    app: {{ .Release.name }}
+    app: {{ .Release.Name }}
 spec:
   accessModes:
     - ReadWriteOnce
