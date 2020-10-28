@@ -22,5 +22,14 @@ spec:
         env:
           {{- toYaml . | nindent 10 }}
         {{- end }}
+        {{- if .Values.disk }}
+        volumeMounts:
+          - name: {{ .Release.Name }}-data
+            mountPath: {{ .Values.disk.mountPath }}
+      volumes:
+        - name: {{ .Release.Name }}-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-data-pvc
+        {{- end }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-image-pull-secret

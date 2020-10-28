@@ -1,5 +1,8 @@
 issuer: "letsencrypt-prod"
-host: host.example.com
+# host: host.example.com
+# disk:
+#   size: 20Gi
+#   mountPath: /opt/data
 image:
   tag: gcr.io/kuar-demo/kuard-amd64:1
   port: 8080

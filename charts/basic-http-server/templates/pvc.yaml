@@ -1,0 +1,15 @@
+{{- if .Values.disk}}
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: {{ .Release.name }}-data
+  labels:
+    app: {{ .Release.name }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: gp2
+  resources:
+    requests:
+      storage:  {{ .Values.disk.size }}
+{{- end -}}
