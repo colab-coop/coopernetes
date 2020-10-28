@@ -20,7 +20,10 @@ spec:
         - containerPort: {{ .Values.image.port }}
         {{- with .Values.image.env}}
         env:
-          {{- toYaml . | nindent 10 }}
+          {{- range $env := .}}
+          - name: {{ $env.name }}
+            value: {{ $env.value | quote }}
+          {{- end }}
         {{- end }}
         {{- if .Values.disk }}
         volumeMounts:
