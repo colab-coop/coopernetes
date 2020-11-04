@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-data-pvc
+            claimName: {{ .Release.Name }}-data
         {{- end }}
       imagePullSecrets:
       - name: {{ .Release.Name }}-image-pull-secret
