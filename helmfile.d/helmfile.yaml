@@ -31,6 +31,7 @@ environments:
       - ../terraform/eks/generated/env.yaml
     secrets:
       - ../terraform/eks/generated/secrets.yaml
+      - ./values/secrets.yaml
 
 releases:
   ### Dashboard
@@ -86,3 +87,5 @@ releases:
     namespace: system-monitoring
     chart: stable/prometheus-operator
     version: 9.3.1
+    values:
+      - ./values/prometheus-operator.yaml.gotmpl
