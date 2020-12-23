@@ -7,13 +7,13 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 3h
-      receiver: default
+      receiver: "opsgenie"
       routes:
       - match:
           alertname: "Watchdog"
-        receiver: null
+        receiver: "null"
     receivers:
-    - name: default
+    - name: "opsgenie"
       opsgenie_configs:
       - api_key: {{ .Values.opsgenie.api_key }}
-    - name: null
+    - name: "null"
