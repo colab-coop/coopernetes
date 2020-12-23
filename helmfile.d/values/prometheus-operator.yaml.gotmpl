@@ -7,13 +7,13 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 3h
-      receiver: "opsgenie"
+      receiver: "colab"
       routes:
       - match:
           alertname: "Watchdog"
         receiver: "null"
     receivers:
-    - name: "opsgenie"
+    - name: "colab"
       opsgenie_configs:
       - api_key: {{ .Values.opsgenie.api_key }}
     - name: "null"
