@@ -11,8 +11,6 @@ repositories:
   url: https://kubernetes.github.io/ingress-nginx
 - name: jetstack
   url: https://charts.jetstack.io
-- name: kubecost
-  url: https://kubecost.github.io/cost-analyzer/
 - name: akomljen
   url: https://raw.githubusercontent.com/komljen/helm-charts/master/charts/
 - name: vmware-tanzu
