@@ -58,3 +58,8 @@ If you are using a custom chart for the project, we recommend putting it at `.de
 ## Working with the cluster:
 - *log-aggregator (if installed)*: `kubectl port-forward deployment/efk-kibana 5601 -n system-logging`
 - *grafana*: `kubectl port-forward -n system-monitoring prometheus-operator-grafana-RANDOM-ID 3000:3000`
+
+## Long term architecture goals
+`helmfile` is great for managing infrastructure installed on a case by case basis, but in order to package up coopernetes so that it's easier to use we will eventually want to create a master helm chart with all the basic installation and configuration options, similar to how https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack installs a bunhc of different srevices using a mix of custom manifests and subcharts.
+
+The benefits of this approach are that we replace the entire helmfile with a single configurable master chart, that installs the appropriate backup services, metrics, ingress, etc. The current repo is somewhat brittle, and not easy to share widely with many organizations. However, part of the reason for that brittleness is that terraform and helmfile are tighly integrated, allowing us to configure both AWS and kubernetes with the same repo. To maintain the same level of interoperability, we would likely want to create a coopernetes terraform module that installs all the AWS specific resources we need for the master chart. Then, any new team that wanted to deploy coopernetes could do so with a terraform module and this master chart.
