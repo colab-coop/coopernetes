@@ -59,7 +59,15 @@ If you are using a custom chart for the project, we recommend putting it at `.de
 - *log-aggregator (if installed)*: `kubectl port-forward deployment/efk-kibana 5601 -n system-logging`
 - *grafana*: `kubectl port-forward -n system-monitoring prometheus-operator-grafana-RANDOM-ID 3000:3000`
 
-## Long term architecture goals
+## Potential improvements
+
+#### Use AWS spot instances / autoscalers to reduce costs:
+Autoscaling is not currently set up in the cluster, but it can be enabled by installing the cluster-autoscaler as outlined in this doc: https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/autoscaling.md. Autoscaling will mean the cluster shrinks and grows based on our capacity needs. If we annotate our deployed services correctly with expected CPU and memory usage, this will allow the cluster to scale up and down to meet demand.
+
+Spot instances are likely not going to be worth our time to investigate, as they are instances that often have cheaper on demand prices, but no guaranteed availibility. We are probably better off with reserved instances, since our capacity is relatively consistent, but figured it might be a worthwhile exploration if someone is interested.
+https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/spot-instances.md
+
+#### Migrate to single helm chart / terraform module
 `helmfile` is great for managing infrastructure installed on a case by case basis, but in order to package up coopernetes so that it's easier to use we will eventually want to create a master helm chart with all the basic installation and configuration options, similar to how https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack installs a bunhc of different srevices using a mix of custom manifests and subcharts.
 
 The benefits of this approach are that we replace the entire helmfile with a single configurable master chart, that installs the appropriate backup services, metrics, ingress, etc. The current repo is somewhat brittle, and not easy to share widely with many organizations. However, part of the reason for that brittleness is that terraform and helmfile are tighly integrated, allowing us to configure both AWS and kubernetes with the same repo. To maintain the same level of interoperability, we would likely want to create a coopernetes terraform module that installs all the AWS specific resources we need for the master chart. Then, any new team that wanted to deploy coopernetes could do so with a terraform module and this master chart.
