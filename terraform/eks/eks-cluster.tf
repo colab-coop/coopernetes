@@ -15,6 +15,9 @@ module "eks" {
   cluster_version = "1.16"
   subnets         = module.vpc.private_subnets
 
+  # enable all cluster logs and send them to cloudwatch
+  cluster_enabled_log_types = ["api","audit","authenticator","controllerManager","scheduler"]
+
   manage_aws_auth = true
   map_roles       = local.map_roles
   map_users       = local.map_users
