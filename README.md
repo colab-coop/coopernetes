@@ -7,7 +7,7 @@ This is the set of terraform, helm, and docker configurations required to manage
 ## Tools
 All commands can be installed with `brew install`, except for helm plugins which use `helm plugin install`
 To manage the AWS infrastructure:
-- `terraform` (We use 12.24 in this repo. Installing `tfswitch` will allow you to easily switch between terraform versions for different projects)
+- `terraform` (We use 12.24 in this repo. Installing `tfswitch` will allow you to easily switch between terraform versions for different projects. You can install it by following the directions at https://tfswitch.warrensbox.com/Install/)
 - `awscli`
 - `wget`
 
