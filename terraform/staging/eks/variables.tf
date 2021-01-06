@@ -1,6 +1,12 @@
-variable "region" {}
-variable "profile" {}
 variable "env" {}
+
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "profile" {
+  default = "coopernetes"
+}
 
 variable "cluster_name" {
   default = "UNDEFINED"
@@ -10,9 +16,6 @@ resource "random_string" "suffix" {
   length  = 8
   special = false
 }
-
-# TODO switch to random_pet
-# resource "random_pet" "suffix" {}
 
 locals {
   default_cluster_name = "coopernetes-${var.env}-${random_string.suffix.result}"

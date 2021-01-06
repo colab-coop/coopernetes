@@ -5,8 +5,8 @@ resource "aws_kms_key" "sops" {
   description = "KMS Key for sops with helm-secrets plugin"
 }
 
-resource "aws_kms_alias" "helm-secrets" {
-  name          = "alias/helm-secrets"
+resource "aws_kms_alias" "sops" {
+  name          = "alias/sops"
   target_key_id = aws_kms_key.sops.key_id
 }
 

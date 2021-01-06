@@ -12,8 +12,6 @@ YAML
 }
 
 resource "local_file" "secrets" {
-  depends_on = ["local_file.sops"]
-
   filename          = "${local.generated}/secrets.yaml"
   sensitive_content = <<-YAML
   # This is a secret configuration file needed by helmfile.
