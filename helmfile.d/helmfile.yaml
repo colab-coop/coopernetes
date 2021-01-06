@@ -26,11 +26,17 @@ helmDefaults:
 
 environments:
   # The "default" environment is available and used when `helmfile` is run without `--environment NAME`.
-  default:
+  staging:
     values:
-      - ../terraform/eks/generated/env.yaml
+      - ../terraform/staging/eks/generated/env.yaml
     secrets:
-      - ../terraform/eks/generated/secrets.yaml
+      - ../terraform/staging/eks/generated/secrets.yaml
+      - ./values/secrets.yaml
+  production:
+    values:
+      - ../terraform/production/eks/generated/env.yaml
+    secrets:
+      - ../terraform/production/eks/generated/secrets.yaml
       - ./values/secrets.yaml
 
 releases:
