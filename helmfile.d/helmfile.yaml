@@ -15,6 +15,8 @@ repositories:
   url: https://raw.githubusercontent.com/komljen/helm-charts/master/charts/
 - name: vmware-tanzu
   url: https://vmware-tanzu.github.io/helm-charts
+- name: prometheus-community
+  url: https://prometheus-community.github.io/helm-charts
 
 # We need to disable validation because we install CRDs and their associated custom resources in one pass
 # https://github.com/roboll/helmfile/blob/1e260e4a5ecd57a4c84cdbc98f569a52b7735bb2/pkg/state/state.go#L193-L196.
@@ -83,7 +85,7 @@ releases:
   ### Monitoring
   - name: prometheus-operator
     namespace: system-monitoring
-    chart: stable/prometheus-operator
-    version: 9.3.1
+    chart: prometheus-community/kube-prometheus-stack
+    version: 12.8
     values:
       - ./values/prometheus-operator.yaml.gotmpl
