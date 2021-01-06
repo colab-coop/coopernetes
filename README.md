@@ -2,7 +2,7 @@ This is the set of terraform, helm, and docker configurations required to manage
 
 ## Branches and Releases
 - `master` is our primary working branch. It is intended to be generic, and can be cloned and used by anyone to launch a cluster from scracth.
-- `itme` and `colab` correspond to the configurations of the two organizations currently using coopernetes. We each have slightly different needs and architectures, so we're using branches to track the individual changes until we can merge them back to master.1::wq
+- `itme` and `colab` correspond to the configurations of the two organizations currently using coopernetes. We each have slightly different needs and architectures, so we're using branches to track the individual changes until we can merge them back to master.
 
 ## Tools
 All commands can be installed with `brew install`, except for helm plugins which use `helm plugin install`
