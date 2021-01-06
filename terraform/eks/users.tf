@@ -23,3 +23,11 @@ resource "aws_iam_user_policy" "coopernetes-deploy-user" {
 }
 EOF
 }
+
+#resource "aws_iam_group" "coopernetes-admins-group" {
+#  name = "admins"
+#}
+
+data "aws_iam_user" "jure" {
+  user_name = "jure"
+}

@@ -6,7 +6,7 @@ terraform {
     key       = "terraform/staging/us-east-1/eks.tfstate"
     region    = "us-east-1"
     profile   = "coopernetes"
-    encrypted = true
+    encrypt   = true
   }
 }
 
