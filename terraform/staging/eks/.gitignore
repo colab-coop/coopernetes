@@ -1,1 +1,3 @@
 generated/*
+.terraform
+changes.plan
