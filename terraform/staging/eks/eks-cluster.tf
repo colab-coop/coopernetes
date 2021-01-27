@@ -1,18 +1,3 @@
-locals {
-  map_users = [
-    {
-      userarn  = aws_iam_user.coopernetes-deploy-user.arn
-      username = "coopernetes-deploy-user"
-      groups   = ["system:masters"]
-    },
-    {
-      userarn  = data.aws_iam_user.jure.arn
-      username = data.aws_iam_user.jure.user_name
-      groups   = ["system:masters"]
-    },
-  ]
-  map_roles = []
-}
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
