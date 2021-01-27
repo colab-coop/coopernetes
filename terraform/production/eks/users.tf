@@ -1,6 +1,5 @@
 resource "aws_iam_user" "coopernetes-deploy-user" {
-  name = "coopernetes-deploy-user"
-
+  name = "${local.cluster_name}-deploy-user"
 }
 
 resource "aws_iam_user_policy" "coopernetes-deploy-user" {

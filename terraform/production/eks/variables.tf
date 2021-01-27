@@ -16,7 +16,7 @@ variable "cluster_name" {
 resource "random_pet" "suffix" {}
 
 locals {
-  default_cluster_name = "coopernetes-${var.env}-${random_pet.suffix.result}"
+  default_cluster_name = "coopernetes-${var.env}-${random_pet.suffix.id}"
   cluster_name         = "${var.cluster_name == "UNDEFINED" ? local.default_cluster_name : var.cluster_name}"
   generated            = "${path.module}/generated"
 }
