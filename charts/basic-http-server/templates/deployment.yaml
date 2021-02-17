@@ -29,6 +29,25 @@ spec:
         volumeMounts:
           - name: {{ .Release.Name }}-data
             mountPath: {{ .Values.disk.mountPath }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.image.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.image.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 30
+        startupProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.image.port }}
+          # 30 minutes (30 checks * 60 seconds)
+          failureThreshold: 30
+          periodSeconds: 60
       volumes:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
