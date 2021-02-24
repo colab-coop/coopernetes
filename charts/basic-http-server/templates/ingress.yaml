@@ -1,4 +1,3 @@
-{{- if .Values.host }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -10,14 +9,17 @@ metadata:
 spec:
   tls:
   - hosts:
-    - {{ .Values.host }}
+    {{- range $host := .Values.hosts }}
+    - {{ $host }}
+    {{- end }}
     secretName: {{ .Release.Name }}-tls
   rules:
-  - host: {{ .Values.host }}
+  {{- range $host := .Values.hosts }}
+  - host: {{ $host }}
     http:
       paths:
       - path: /
         backend:
           serviceName: {{ .Release.Name }}
           servicePort: 80
-{{- end -}}
+  {{- end }}

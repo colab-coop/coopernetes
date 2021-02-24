@@ -1,5 +1,7 @@
 issuer: "letsencrypt-prod"
-# host: host.example.com
+hosts:
+  - host1.example.com
+  - host2.example.com
 # disk:
 #   size: 20Gi
 #   mountPath: /opt/data
